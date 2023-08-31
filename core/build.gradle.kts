@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -38,7 +40,13 @@ dependencies {
     implementation(Dependencies.retrofit)
     implementation(Dependencies.retrofitGson)
     implementation(Dependencies.loggingInterceptor)
+    implementation(Dependencies.daggerHilt)
+    kapt(Dependencies.daggerHiltCompiler)
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.testJunit)
     androidTestImplementation(Dependencies.espressoCore)
+}
+
+kapt {
+    correctErrorTypes = true
 }

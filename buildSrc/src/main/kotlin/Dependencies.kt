@@ -6,6 +6,8 @@ object Dependencies {
     const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofitVersion}"
     const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Version.retrofitVersion}"
     const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Version.loggingInterceptorVersion}"
+    const val daggerHilt = "com.google.dagger:hilt-android:${Version.daggerHiltVersion}"
+    const val daggerHiltCompiler = "com.google.dagger:hilt-compiler:${Version.daggerHiltVersion}"
     const val junit = "junit:junit:${Version.junitVersion}"
     const val testJunit = "androidx.test.ext:junit:${Version.testJunitVersion}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${Version.espressoVersion}"

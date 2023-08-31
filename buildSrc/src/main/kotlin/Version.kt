@@ -7,5 +7,6 @@ object Version {
     const val testJunitVersion = "1.1.5"
     const val espressoVersion = "3.5.1"
     const val retrofitVersion = "2.9.0"
+    const val daggerHiltVersion = "2.47"
     const val loggingInterceptorVersion = "4.9.1"
 }
