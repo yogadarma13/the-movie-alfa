@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "com.yogadarma.themoviealfa"
-    compileSdk = 33
+    compileSdk = AppConfig.compileSdk
 
     defaultConfig {
         applicationId = "com.yogadarma.themoviealfa"
-        minSdk = 21
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,11 +37,11 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(Dependencies.coreKtx)
+    implementation(Dependencies.appcompat)
+    implementation(Dependencies.material)
+    implementation(Dependencies.constraintlayout)
+    testImplementation(Dependencies.junit)
+    androidTestImplementation(Dependencies.testJunit)
+    androidTestImplementation(Dependencies.espressoCore)
 }
