@@ -35,6 +35,9 @@ android {
 dependencies {
 
     implementation(Dependencies.coreKtx)
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.retrofitGson)
+    implementation(Dependencies.loggingInterceptor)
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.testJunit)
     androidTestImplementation(Dependencies.espressoCore)
