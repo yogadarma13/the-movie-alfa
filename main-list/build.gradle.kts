@@ -38,6 +38,7 @@ android {
 dependencies {
 
     implementation(project(":common"))
+    implementation(project(":core"))
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.appcompat)
     implementation(Dependencies.material)

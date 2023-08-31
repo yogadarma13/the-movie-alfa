@@ -17,3 +17,4 @@ rootProject.name = "The Movie Alfa"
 include(":app")
 include(":common")
 include(":main-list")
+include(":core")
