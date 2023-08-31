@@ -1,20 +1,17 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.yogadarma.themoviealfa"
+    namespace = "com.yogadarma.main_list"
     compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        applicationId = "com.yogadarma.themoviealfa"
         minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -41,11 +38,9 @@ android {
 dependencies {
 
     implementation(project(":common"))
-    implementation(project(":main-list"))
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.appcompat)
     implementation(Dependencies.material)
-    implementation(Dependencies.constraintlayout)
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.testJunit)
     androidTestImplementation(Dependencies.espressoCore)
