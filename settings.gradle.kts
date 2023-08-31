@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "The Movie Alfa"
 include(":app")
+include(":common")
