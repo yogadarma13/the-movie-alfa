@@ -9,4 +9,5 @@ object Version {
     const val retrofitVersion = "2.9.0"
     const val daggerHiltVersion = "2.47"
     const val loggingInterceptorVersion = "4.9.1"
+    const val roomVersion = "2.5.0"
 }

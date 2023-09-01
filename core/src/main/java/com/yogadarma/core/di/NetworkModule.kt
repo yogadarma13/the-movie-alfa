@@ -1,5 +1,6 @@
 package com.yogadarma.core.di
 
+import com.yogadarma.core.data.source.remote.network.ApiService
 import com.yogadarma.core.utils.Keys
 import dagger.Module
 import dagger.Provides
@@ -47,4 +48,7 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
+
+    @Provides
+    fun provideApiService(retrofit: Retrofit) = retrofit.create(ApiService::class.java)
 }
