@@ -1,0 +1,20 @@
+package com.yogadarma.core.data.source.local
+
+import androidx.paging.PagingSource
+import com.yogadarma.core.data.source.local.room.entity.MovieEntity
+import com.yogadarma.core.data.source.local.room.entity.RemoteKeysEntity
+
+interface LocalDataSource {
+
+    suspend fun insertMovies(movies: List<MovieEntity>)
+
+    fun getMoviesData(): PagingSource<Int, MovieEntity>
+
+    suspend fun deleteAllMovies()
+
+    suspend fun insertAllKeys(remoteKey: List<RemoteKeysEntity>)
+
+    suspend fun getRemoteKeysById(id: String): RemoteKeysEntity?
+
+    suspend fun deleteRemoteKeys()
+}

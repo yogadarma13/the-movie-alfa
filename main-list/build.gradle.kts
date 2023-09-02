@@ -1,22 +1,19 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.yogadarma.themoviealfa"
+    namespace = "com.yogadarma.main_list"
     compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        applicationId = "com.yogadarma.themoviealfa"
         minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -44,14 +41,23 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":core"))
-    implementation(project(":main-list"))
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.appcompat)
     implementation(Dependencies.material)
-    implementation(Dependencies.constraintlayout)
+    implementation(Dependencies.daggerHilt)
     implementation(Dependencies.daggerHilt)
     kapt(Dependencies.daggerHiltCompiler)
+    implementation(Dependencies.lifecycleLiveData)
+    implementation(Dependencies.paging)
+    implementation(Dependencies.activityKtx)
+    implementation(Dependencies.shimmer)
+    implementation(Dependencies.coroutinesCore)
+    implementation(Dependencies.coroutinesAndroid)
     testImplementation(Dependencies.junit)
+    testImplementation(Dependencies.turbine)
+    testImplementation(Dependencies.mockito)
+    testImplementation(Dependencies.archCoreTesting)
+    testImplementation(Dependencies.coroutinesTest)
     androidTestImplementation(Dependencies.testJunit)
     androidTestImplementation(Dependencies.espressoCore)
 }
