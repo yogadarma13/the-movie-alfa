@@ -1,3 +1,4 @@
 <resources>
-    <string name="main_list_popular_movie_label">Popular Movies</string>
+    <string name="retry_button_content_description">Retry Button</string>
+    <string name="retry_button_text">Retry</string>
 </resources>

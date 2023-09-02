@@ -26,4 +26,5 @@ object Dependencies {
     const val archCoreTesting = "androidx.arch.core:core-testing:${Version.archCoreTestingVersion}"
     const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutinesTestVersion}"
     const val testCoreKtx = "androidx.test:core-ktx:${Version.testCoreKtx}"
+    const val glide = "com.github.bumptech.glide:glide:${Version.glideVersion}"
 }

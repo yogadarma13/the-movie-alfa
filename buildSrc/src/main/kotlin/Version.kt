@@ -19,4 +19,5 @@ object Version {
     const val archCoreTestingVersion = "2.2.0"
     const val coroutinesTestVersion = "1.6.1"
     const val testCoreKtx = "1.5.0"
+    const val glideVersion = "4.16.0"
 }
