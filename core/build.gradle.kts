@@ -52,13 +52,20 @@ dependencies {
     kapt(Dependencies.roomCompiler)
     implementation(Dependencies.coroutinesCore)
     implementation(Dependencies.coroutinesAndroid)
+    implementation(Dependencies.paging)
+    implementation(Dependencies.roomPaging)
+    implementation(Dependencies.lifecycleLiveData)
     testImplementation(Dependencies.junit)
     testImplementation(Dependencies.turbine)
     testImplementation(Dependencies.mockito)
     testImplementation(Dependencies.archCoreTesting)
     testImplementation(Dependencies.coroutinesTest)
+    androidTestImplementation(Dependencies.mockitoAndroid)
+    androidTestImplementation(Dependencies.archCoreTesting)
+    androidTestImplementation(Dependencies.coroutinesTest)
     androidTestImplementation(Dependencies.testJunit)
     androidTestImplementation(Dependencies.espressoCore)
+    androidTestImplementation(Dependencies.testCoreKtx)
 }
 
 kapt {

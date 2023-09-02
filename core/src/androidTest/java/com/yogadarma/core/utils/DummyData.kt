@@ -1,7 +1,5 @@
 package com.yogadarma.core.utils
 
-import com.yogadarma.core.data.source.local.room.entity.MovieEntity
-import com.yogadarma.core.data.source.local.room.entity.RemoteKeysEntity
 import com.yogadarma.core.data.source.remote.model.MovieListItem
 import com.yogadarma.core.data.source.remote.model.MovieListResponse
 
@@ -46,36 +44,6 @@ object DummyData {
                 voteAverage = 7.8,
                 voteCount = 1648
             )
-        )
-    )
-
-    fun generateMoviesListEntity() = listOf(
-        MovieEntity(
-            id = "615656",
-            overview = "An exploratory dive into the deepest depths of the ocean of a daring research team spirals into chaos when a malevolent mining operation threatens their mission and forces them into a high-stakes battle for survival.",
-            poster = "/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg",
-            title = "Meg 2= The Trench",
-            voteAverage = 7.0
-        ),
-        MovieEntity(
-            id = "976573",
-            overview = "In a city where fire, water, land and air residents live together, a fiery young woman and a go-with-the-flow guy will discover something elemental= how much they have in common.",
-            poster = "/rvSzdzwfRjAeESh1BPIxjf4eklN.jpg",
-            title = "Elemental",
-            voteAverage = 7.8,
-        )
-    )
-
-    fun generateRemoteKeysEntityList() = listOf(
-        RemoteKeysEntity(
-            id = "key1",
-            prevKey = 1,
-            nextKey = 2
-        ),
-        RemoteKeysEntity(
-            id = "key2",
-            prevKey = 2,
-            nextKey = 3
         )
     )
 }

@@ -3,6 +3,8 @@ package com.yogadarma.core.di
 import android.content.Context
 import androidx.room.Room
 import com.yogadarma.core.data.source.local.room.MovieDatabase
+import com.yogadarma.core.data.source.local.room.dao.MovieDao
+import com.yogadarma.core.data.source.local.room.dao.RemoteKeysDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,4 +21,10 @@ object DatabaseModule {
         context,
         MovieDatabase::class.java, "Movie.db"
     ).fallbackToDestructiveMigration().build()
+
+    @Provides
+    fun provideMovieDao(database: MovieDatabase): MovieDao = database.movieDao()
+
+    @Provides
+    fun provideRemoteKeysDao(database: MovieDatabase): RemoteKeysDao = database.remoteKeysDao()
 }

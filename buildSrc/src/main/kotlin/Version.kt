@@ -11,8 +11,12 @@ object Version {
     const val loggingInterceptorVersion = "4.9.1"
     const val roomVersion = "2.5.2"
     const val kotlinCoroutinesVersion = "1.3.9"
+    const val pagingVersion = "3.1.1"
+    const val lifecycleVersion = "2.6.1"
+    const val activityKtxVersion = "1.7.2"
     const val turbineVersion = "0.11.0"
     const val mockitoVersion = "3.12.4"
     const val archCoreTestingVersion = "2.2.0"
     const val coroutinesTestVersion = "1.6.1"
+    const val testCoreKtx = "1.5.0"
 }
