@@ -26,11 +26,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     externalNativeBuild {
         cmake {
@@ -50,7 +50,13 @@ dependencies {
     implementation(Dependencies.roomRuntime)
     implementation(Dependencies.roomKtx)
     kapt(Dependencies.roomCompiler)
+    implementation(Dependencies.coroutinesCore)
+    implementation(Dependencies.coroutinesAndroid)
     testImplementation(Dependencies.junit)
+    testImplementation(Dependencies.turbine)
+    testImplementation(Dependencies.mockito)
+    testImplementation(Dependencies.archCoreTesting)
+    testImplementation(Dependencies.coroutinesTest)
     androidTestImplementation(Dependencies.testJunit)
     androidTestImplementation(Dependencies.espressoCore)
 }

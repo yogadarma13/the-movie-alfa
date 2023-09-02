@@ -11,7 +11,13 @@ object Dependencies {
     const val roomRuntime = "androidx.room:room-runtime:${Version.roomVersion}"
     const val roomCompiler = "androidx.room:room-compiler:${Version.roomVersion}"
     const val roomKtx = "androidx.room:room-ktx:${Version.roomVersion}"
+    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.kotlinCoroutinesVersion}"
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.kotlinCoroutinesVersion}"
     const val junit = "junit:junit:${Version.junitVersion}"
     const val testJunit = "androidx.test.ext:junit:${Version.testJunitVersion}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${Version.espressoVersion}"
+    const val turbine = "app.cash.turbine:turbine:${Version.turbineVersion}"
+    const val mockito = "org.mockito:mockito-core:${Version.mockitoVersion}"
+    const val archCoreTesting = "androidx.arch.core:core-testing:${Version.archCoreTestingVersion}"
+    const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutinesTestVersion}"
 }
