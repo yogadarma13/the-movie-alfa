@@ -1,22 +1,17 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.yogadarma.themoviealfa"
+    namespace = "com.yogadarma.movie_detail"
     compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        applicationId = "com.yogadarma.themoviealfa"
         minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -44,19 +39,10 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":core"))
-    implementation(project(":main-list"))
-    implementation(project(":movie-detail"))
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.appcompat)
     implementation(Dependencies.material)
-    implementation(Dependencies.constraintlayout)
-    implementation(Dependencies.daggerHilt)
-    kapt(Dependencies.daggerHiltCompiler)
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.testJunit)
     androidTestImplementation(Dependencies.espressoCore)
-}
-
-kapt {
-    correctErrorTypes = true
 }
