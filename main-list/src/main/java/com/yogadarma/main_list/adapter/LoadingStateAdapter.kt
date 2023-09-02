@@ -1,4 +1,4 @@
-package com.yogadarma.main_list
+package com.yogadarma.main_list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -25,7 +25,7 @@ class LoadingStateAdapter(private val retry: () -> Unit) :
     class LoadingStateViewHolder(private val binding: ItemLoadingBinding, retry: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.retryButton.setOnClickListener { retry.invoke() }
+            binding.btnRetry.setOnClickListener { retry.invoke() }
         }
 
         fun bind(loadState: LoadState) {
@@ -34,7 +34,7 @@ class LoadingStateAdapter(private val retry: () -> Unit) :
                     errorMsg.text = loadState.error.localizedMessage
                 }
                 progressBar.isVisible = loadState is LoadState.Loading
-                retryButton.isVisible = loadState is LoadState.Error
+                btnRetry.isVisible = loadState is LoadState.Error
                 errorMsg.isVisible = loadState is LoadState.Error
             }
         }

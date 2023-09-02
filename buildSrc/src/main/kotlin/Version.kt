@@ -20,4 +20,5 @@ object Version {
     const val coroutinesTestVersion = "1.6.1"
     const val testCoreKtx = "1.5.0"
     const val glideVersion = "4.16.0"
+    const val shimmerVersion = "0.5.0"
 }

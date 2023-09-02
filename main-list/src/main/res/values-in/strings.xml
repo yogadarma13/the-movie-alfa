@@ -2,4 +2,6 @@
 <resources>
     <string name="retry_button_content_description">Tombol Coba Lagi</string>
     <string name="retry_button_text">Coba Lagi</string>
+    <string name="error_message">Tidak bisa mendapatkan data. Pastikan koneksi internet anda.</string>
+    <string name="empty_data_message">Tidak ada data</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.yogadarma.main_list
+package com.yogadarma.main_list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

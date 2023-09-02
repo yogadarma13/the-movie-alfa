@@ -4,27 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp">
 
     <TextView
         android:id="@+id/errorMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:text="@string/error_message"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Timeout" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/retryButton"
+        android:id="@+id/btnRetry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/retry_button_content_description"
         android:text="@string/retry_button_text"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:backgroundTint="@color/red"
         app:cornerRadius="40dp"
         app:elevation="0dp"
@@ -39,10 +41,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
