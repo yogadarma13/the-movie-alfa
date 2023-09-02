@@ -1,5 +1,6 @@
-package com.yogadarma.core.domain.usecase
+package com.yogadarma.main_list
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.paging.AsyncPagingDataDiffer
 import androidx.paging.PagingData
@@ -7,11 +8,11 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListUpdateCallback
-import app.cash.turbine.test
 import com.yogadarma.core.domain.model.MovieItem
-import com.yogadarma.core.domain.repository.Repository
-import com.yogadarma.core.utils.DummyData
-import com.yogadarma.core.utils.MainDispatcherRule
+import com.yogadarma.core.domain.usecase.GetMoviesUseCase
+import com.yogadarma.main_list.utils.DummyData
+import com.yogadarma.main_list.utils.MainDispatcherRule
+import com.yogadarma.main_list.utils.getOrAwaitValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
@@ -22,50 +23,54 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
+import org.mockito.Mockito
+import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(MockitoJUnitRunner::class)
-class GetMoviesUseCaseTest {
+class MainListViewModelTest {
+
+    @get:Rule
+    val instantExecutorRule = InstantTaskExecutorRule()
 
     @get:Rule
     val mainDispatcherRules = MainDispatcherRule()
 
     @Mock
-    private lateinit var repository: Repository
+    private lateinit var getMoviesUseCase: GetMoviesUseCase
 
-    lateinit var getMoviesImpl: GetMoviesImpl
+    private lateinit var viewModel: MainListViewModel
 
     @Before
     fun setup() {
-        getMoviesImpl = GetMoviesImpl(repository)
+        viewModel = MainListViewModel(getMoviesUseCase)
     }
 
     @Test
-    fun `when getMoviesData UseCase Should Not Null and Return Data`() = runTest {
+    fun `when getMoviesData ViewModel Should Not Null and Return Data`() = runTest {
         val dummyData = DummyData.generateMoviesList()
         val dummyDataPaging = MoviePagingSource.snapshot(dummyData)
         val dummyDataFlow = flow { emit(dummyDataPaging) }
 
-        `when`(repository.getMoviesData()).thenReturn(dummyDataFlow)
+        Mockito.`when`(getMoviesUseCase()).thenReturn(dummyDataFlow)
 
-        getMoviesImpl().test {
-            awaitItem().let { actualResult ->
-                val differ = AsyncPagingDataDiffer(
-                    diffCallback = DIFF_CALLBACK,
-                    updateCallback = noopListUpdateCallback,
-                    workerDispatcher = Dispatchers.Main,
-                )
-                differ.submitData(actualResult)
+        val actualResult: PagingData<MovieItem> =
+            viewModel.getMoviesData().getOrAwaitValue()
 
-                assertNotNull(differ.snapshot())
-                assertEquals(dummyData.size, differ.snapshot().size)
-                assertEquals(dummyData[0], differ.snapshot()[0])
-                assertEquals(dummyData[1], differ.snapshot()[1])
-            }
-            cancelAndIgnoreRemainingEvents()
-        }
+        val differ = AsyncPagingDataDiffer(
+            diffCallback = DIFF_CALLBACK,
+            updateCallback = noopListUpdateCallback,
+            workerDispatcher = Dispatchers.Main,
+        )
+        differ.submitData(actualResult)
+
+        assertNotNull(differ.snapshot())
+        assertEquals(dummyData.size, differ.snapshot().size)
+        assertEquals(dummyData[0], differ.snapshot()[0])
+        assertEquals(dummyData[1], differ.snapshot()[1])
+
+        verify(getMoviesUseCase).invoke()
     }
 }
 

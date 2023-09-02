@@ -29,7 +29,7 @@ class RemoteDataSourceTest {
     }
 
     @Test
-    fun `getMoviesListData when api service success return Result Success`() = runTest {
+    fun `when getMoviesData RemoteDataSource Should Return Data Response`() = runTest {
         val dummyData = DummyData.generateMoviesListResponse()
 
         `when`(apiService.getMoviesData(1)).thenReturn(dummyData)
@@ -49,7 +49,7 @@ class RemoteDataSourceTest {
     }
 
     @Test
-    fun `getMoviesListData when api service error return Result Error`() = runTest {
+    fun `when getMoviesData RemoteDataSource Should Return Error`() = runTest {
 
         `when`(apiService.getMoviesData(1)).thenThrow(HttpException::class.java)
 
