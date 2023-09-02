@@ -58,4 +58,36 @@ class RemoteDataSourceTest {
             cancelAndIgnoreRemainingEvents()
         }
     }
+
+    @Test
+    fun `when getMovieDetail RemoteDataSource Should Return Data Response`() = runTest {
+        val dummyData = DummyData.generateMovieDetailResponse()
+
+        `when`(apiService.getMovieDetail("615656")).thenReturn(dummyData)
+
+        remoteDataSourceImpl.getMovieDetail("615656").test {
+            awaitItem().let {
+                Assert.assertTrue(it is ApiResponse.Success)
+                assertEquals(dummyData, (it as ApiResponse.Success).value)
+                assertEquals(dummyData, it.value)
+                assertEquals(dummyData.title, it.value?.title)
+                assertEquals(dummyData.overview, it.value?.overview)
+                assertEquals(dummyData.posterPath, it.value?.posterPath)
+                assertEquals(dummyData.voteAverage, it.value?.voteAverage)
+                assertEquals(dummyData.releaseDate, it.value?.releaseDate)
+            }
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `when getMovieDetail RemoteDataSource Should Return Error`() = runTest {
+
+        `when`(apiService.getMovieDetail("615656")).thenThrow(HttpException::class.java)
+
+        remoteDataSourceImpl.getMovieDetail("615656").test {
+            Assert.assertTrue(awaitItem() is ApiResponse.Error)
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.yogadarma.core.utils
 
 import com.yogadarma.core.data.source.local.room.entity.MovieEntity
 import com.yogadarma.core.data.source.local.room.entity.RemoteKeysEntity
+import com.yogadarma.core.data.source.remote.model.MovieDetailResponse
 import com.yogadarma.core.data.source.remote.model.MovieListItem
 import com.yogadarma.core.data.source.remote.model.MovieListResponse
 import com.yogadarma.core.domain.model.MovieItem
@@ -95,5 +96,21 @@ object DummyData {
             title = "Elemental",
             voteAverage = 7.8,
         )
+    )
+
+    fun generateMovieDetailResponse() = MovieDetailResponse(
+        adult = false,
+        backdropPath = "/8pjWz2lt29KyVGoq1mXYu6Br7dE.jpg",
+        id = 615656,
+        originalLanguage = "en",
+        originalTitle = "Meg 2= The Trench",
+        overview = "An exploratory dive into the deepest depths of the ocean of a daring research team spirals into chaos when a malevolent mining operation threatens their mission and forces them into a high-stakes battle for survival.",
+        popularity = 6913.755,
+        posterPath = "/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg",
+        releaseDate = "2023-08-02",
+        title = "Meg 2= The Trench",
+        video = false,
+        voteAverage = 7.0,
+        voteCount = 1174
     )
 }
