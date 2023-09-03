@@ -11,10 +11,14 @@ import com.yogadarma.core.data.source.local.room.MovieDatabase
 import com.yogadarma.core.data.source.remote.ApiResponse
 import com.yogadarma.core.data.source.remote.RemoteDataSource
 import com.yogadarma.core.data.source.remote.model.MovieDetailResponse
+import com.yogadarma.core.data.source.remote.model.ReviewResponse
 import com.yogadarma.core.domain.model.Movie
+import com.yogadarma.core.domain.model.Review
 import com.yogadarma.core.domain.repository.Repository
 import com.yogadarma.core.utils.toMovie
 import com.yogadarma.core.utils.toMovieEntity
+import com.yogadarma.core.utils.toReview
+import com.yogadarma.core.utils.toReviewEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapLatest
@@ -62,6 +66,26 @@ class RepositoryImpl @Inject constructor(
             }
 
             override fun shouldFetch(data: Movie?): Boolean = data?.releaseDate.isNullOrEmpty()
+
+        }.asFlow()
+
+    override fun getReviewsData(movieId: String): Flow<Resource<Review>> =
+        object : NetworkBoundResource<Review, ReviewResponse>() {
+            override suspend fun loadFromDB(): Review? {
+                return localDataSource.getReviews(movieId)?.toReview()
+            }
+
+            override suspend fun createCall(): Flow<ApiResponse<ReviewResponse>> =
+                remoteDataSource.getMovieReviews(movieId)
+
+            override suspend fun saveCallResult(data: ReviewResponse?) {
+                val reviewEntity = data?.toReviewEntity(movieId)
+                reviewEntity?.let {
+                    localDataSource.insertReviews(it)
+                }
+            }
+
+            override fun shouldFetch(data: Review?): Boolean = data?.list.isNullOrEmpty()
 
         }.asFlow()
 

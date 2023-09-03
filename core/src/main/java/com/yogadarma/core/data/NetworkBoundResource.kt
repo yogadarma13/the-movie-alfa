@@ -15,7 +15,9 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
             when (val apiResponse = createCall().first()) {
                 is ApiResponse.Success -> {
                     saveCallResult(apiResponse.value)
-                    emit(Resource.Success(loadFromDB()))
+                    loadFromDB()?.let {
+                        emit(Resource.Success(it))
+                    }
                 }
 
                 is ApiResponse.Error -> {
@@ -24,13 +26,15 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                 }
             }
         } else {
-            emit(Resource.Success(loadFromDB()))
+            loadFromDB()?.let {
+                emit(Resource.Success(it))
+            }
         }
     }
 
     protected open fun onFetchFailed() {}
 
-    protected abstract suspend fun loadFromDB(): ResultType
+    protected abstract suspend fun loadFromDB(): ResultType?
 
     protected abstract fun shouldFetch(data: ResultType?): Boolean
 

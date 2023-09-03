@@ -8,6 +8,7 @@ import com.yogadarma.core.data.source.local.room.entity.MovieEntity
 import com.yogadarma.core.data.source.remote.ApiResponse
 import com.yogadarma.core.data.source.remote.RemoteDataSource
 import com.yogadarma.core.data.source.remote.model.MovieDetailResponse
+import com.yogadarma.core.data.source.remote.model.ReviewResponse
 import com.yogadarma.core.utils.DummyData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
@@ -72,6 +73,61 @@ class RepositoryTest {
         `when`(remoteDataSource.getMovieDetail("1234")).thenReturn(dummyDataError)
 
         repository.getMovieDetail("1234").test {
+            awaitItem() // Return Loading
+            awaitItem().let {
+                Assert.assertTrue(it is Resource.Error)
+                Assert.assertEquals("error", it.error?.message)
+            }
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `when getReviewsData Repository Should Return Movie Data`() = runTest {
+        val dummyData = DummyData.generateReviewEntity()
+
+        `when`(localDataSource.getReviews("615656")).thenReturn(dummyData)
+
+        repository.getReviewsData("615656").test {
+            awaitItem() // Return Loading
+            awaitItem().let {
+                Assert.assertTrue(it is Resource.Success)
+                Assert.assertEquals(
+                    dummyData.review?.reviewList?.get(0)?.reviewId,
+                    it.data?.list?.get(0)?.reviewId
+                )
+                Assert.assertEquals(
+                    dummyData.review?.reviewList?.get(0)?.avatar,
+                    it.data?.list?.get(0)?.avatar
+                )
+                Assert.assertEquals(
+                    dummyData.review?.reviewList?.get(0)?.date,
+                    it.data?.list?.get(0)?.date
+                )
+                Assert.assertEquals(
+                    dummyData.review?.reviewList?.get(0)?.username,
+                    it.data?.list?.get(0)?.username
+                )
+                Assert.assertEquals(
+                    dummyData.review?.reviewList?.get(0)?.content,
+                    it.data?.list?.get(0)?.content
+                )
+            }
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `when getReviewsData Repository Should Return Error`() = runTest {
+
+        val dummyDataError = flow<ApiResponse<ReviewResponse>> {
+            emit(ApiResponse.Error(error = Throwable(message = "error")))
+        }
+
+        `when`(localDataSource.getReviews("1234")).thenReturn(null)
+        `when`(remoteDataSource.getMovieReviews("1234")).thenReturn(dummyDataError)
+
+        repository.getReviewsData("1234").test {
             awaitItem() // Return Loading
             awaitItem().let {
                 Assert.assertTrue(it is Resource.Error)
