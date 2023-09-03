@@ -7,13 +7,15 @@ import com.yogadarma.core.data.source.local.room.converter.EntityConverter
 import com.yogadarma.core.data.source.local.room.dao.MovieDao
 import com.yogadarma.core.data.source.local.room.dao.RemoteKeysDao
 import com.yogadarma.core.data.source.local.room.dao.ReviewDao
+import com.yogadarma.core.data.source.local.room.dao.VideoDao
 import com.yogadarma.core.data.source.local.room.entity.MovieEntity
 import com.yogadarma.core.data.source.local.room.entity.RemoteKeysEntity
 import com.yogadarma.core.data.source.local.room.entity.ReviewEntity
+import com.yogadarma.core.data.source.local.room.entity.VideoEntity
 
 @TypeConverters(value = [EntityConverter::class])
 @Database(
-    entities = [MovieEntity::class, RemoteKeysEntity::class, ReviewEntity::class],
+    entities = [MovieEntity::class, RemoteKeysEntity::class, ReviewEntity::class, VideoEntity::class],
     version = 1,
     exportSchema = false
 )
@@ -21,4 +23,5 @@ abstract class MovieDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
     abstract fun remoteKeysDao(): RemoteKeysDao
     abstract fun reviewDao(): ReviewDao
+    abstract fun videoDao(): VideoDao
 }
