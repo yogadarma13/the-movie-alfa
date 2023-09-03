@@ -30,7 +30,7 @@ The Movie Alfa is simple application to display the most popular movie data
 - In the main-list and movie-detail modules there is a unit test to test the ViewModel
 - In the core module there are unit tests to test core functions such as UseCase, Repository, LocalDataSource, and RemoteDataSource.
 
-:warning: If you want to run unit test of class **RemoteDataSource**, you need to **comment** ```EspressoIdlingResource``` first.
+:warning: If you want to run unit test of class **RemoteDataSource**, you need to **comment** ```EspressoIdlingResource``` on class **RemoteDataSourceImpl** first.
 ```
 // EspressoIdlingResource.increment()
 ```
@@ -41,7 +41,7 @@ The Movie Alfa is simple application to display the most popular movie data
 ### Instructions for running Instrumentation Test
 - You can run the instrumentation test on app module
 
-:warning: If you want to run instrumentation test, you need to **uncomment** ```EspressoIdlingResource``` on class **RemoteDataSource** first.
+:warning: If you want to run instrumentation test, you need to **uncomment** ```EspressoIdlingResource``` on class **RemoteDataSourceImpl** first.
 ```
 EspressoIdlingResource.increment()
 ```
