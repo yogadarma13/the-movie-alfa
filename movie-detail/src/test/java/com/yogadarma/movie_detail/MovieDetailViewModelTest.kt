@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.yogadarma.core.data.source.Resource
 import com.yogadarma.core.domain.usecase.GetMovieDetailUseCase
 import com.yogadarma.core.domain.usecase.GetReviewsUseCase
+import com.yogadarma.core.domain.usecase.GetVideoUseCase
 import com.yogadarma.movie_detail.utils.DummyData
 import com.yogadarma.movie_detail.utils.MainDispatcherRule
 import com.yogadarma.movie_detail.utils.getOrAwaitValue
@@ -36,11 +37,14 @@ class MovieDetailViewModelTest {
     @Mock
     private lateinit var getReviewsUseCase: GetReviewsUseCase
 
+    @Mock
+    private lateinit var getVideoUseCase: GetVideoUseCase
+
     private lateinit var viewModel: MovieDetailViewModel
 
     @Before
     fun setup() {
-        viewModel = MovieDetailViewModel(getMovieDetailUseCase, getReviewsUseCase)
+        viewModel = MovieDetailViewModel(getMovieDetailUseCase, getReviewsUseCase, getVideoUseCase)
     }
 
     @Test
