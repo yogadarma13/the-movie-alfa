@@ -3,6 +3,7 @@ package com.yogadarma.core.data.source.remote
 import com.yogadarma.core.data.source.remote.model.MovieDetailResponse
 import com.yogadarma.core.data.source.remote.model.MovieListResponse
 import com.yogadarma.core.data.source.remote.model.ReviewResponse
+import com.yogadarma.core.data.source.remote.model.VideoResponse
 import com.yogadarma.core.data.source.remote.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -36,6 +37,15 @@ class RemoteDataSourceImpl @Inject constructor(
     override fun getMovieReviews(movieId: String): Flow<ApiResponse<ReviewResponse>> = flow {
         try {
             val response = apiService.getMovieReviews(movieId)
+            emit(ApiResponse.Success(response))
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override fun getMovieVideos(movieId: String): Flow<ApiResponse<VideoResponse>> = flow {
+        try {
+            val response = apiService.getMovieVideos(movieId)
             emit(ApiResponse.Success(response))
         } catch (e: Exception) {
             emit(ApiResponse.Error(e))
