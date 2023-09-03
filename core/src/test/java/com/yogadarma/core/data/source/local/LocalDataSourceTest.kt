@@ -3,6 +3,7 @@ package com.yogadarma.core.data.source.local
 import com.yogadarma.core.data.source.local.room.dao.MovieDao
 import com.yogadarma.core.data.source.local.room.dao.RemoteKeysDao
 import com.yogadarma.core.data.source.local.room.dao.ReviewDao
+import com.yogadarma.core.data.source.local.room.dao.VideoDao
 import com.yogadarma.core.data.source.local.room.entity.ReviewColumn
 import com.yogadarma.core.data.source.local.room.entity.ReviewEntity
 import com.yogadarma.core.utils.DummyData
@@ -30,11 +31,14 @@ class LocalDataSourceTest {
     @Mock
     private lateinit var reviewDao: ReviewDao
 
+    @Mock
+    private lateinit var videoDao: VideoDao
+
     private lateinit var localDataSourceImpl: LocalDataSourceImpl
 
     @Before
     fun setup() {
-        localDataSourceImpl = LocalDataSourceImpl(movieDao, remoteKeysDao, reviewDao)
+        localDataSourceImpl = LocalDataSourceImpl(movieDao, remoteKeysDao, reviewDao, videoDao)
     }
 
     @Test
@@ -135,8 +139,8 @@ class LocalDataSourceTest {
         val actualResult = localDataSourceImpl.getReviews("615656")
 
         assertEquals(dummyData, actualResult)
-        assertEquals(dummyData.id, actualResult.id)
-        assertEquals(dummyData.review, actualResult.review)
+        assertEquals(dummyData.id, actualResult?.id)
+        assertEquals(dummyData.review, actualResult?.review)
 
         Mockito.verify(reviewDao).getReviews("615656")
     }
