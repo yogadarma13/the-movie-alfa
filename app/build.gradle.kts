@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":core"))
     implementation(project(":main-list"))
+    implementation(project(":movie-detail"))
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.appcompat)
     implementation(Dependencies.material)

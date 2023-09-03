@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yogadarma.common.base.BaseActivity
+import com.yogadarma.common.navigation.NavigationDirection
 import com.yogadarma.main_list.adapter.LoadingStateAdapter
 import com.yogadarma.main_list.adapter.MovieItemAdapter
 import com.yogadarma.main_list.databinding.ActivityMainListBinding
@@ -38,6 +39,10 @@ class MainListActivity : BaseActivity<ActivityMainListBinding>(ActivityMainListB
                     movieItemAdapter.retry()
                 }
             )
+        }
+
+        movieItemAdapter.setOnItemClickListener { movieId ->
+            navigateTo(NavigationDirection.MovieDetail(movieId))
         }
     }
 
