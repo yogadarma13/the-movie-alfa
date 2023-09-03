@@ -40,6 +40,13 @@ class LocalDataSourceTest {
     }
 
     @Test
+    fun `verify function insertMovieDetail`() = runTest {
+        localDataSourceImpl.insertMovieDetail("1234", "20222-06-22", "Action")
+
+        Mockito.verify(movieDao).insertMovieDetail("1234", "20222-06-22", "Action")
+    }
+
+    @Test
     fun `verify function getMoviesData`() = runTest {
         localDataSourceImpl.getMoviesData()
 
