@@ -30,4 +30,5 @@ object Dependencies {
     const val shimmer = "com.facebook.shimmer:shimmer:${Version.shimmerVersion}"
     const val jodaTime = "joda-time:joda-time:${Version.jodaVersion}"
     const val circleImageView = "de.hdodenhof:circleimageview:${Version.circleImageViewVersion}"
+    const val youtubePlayer = "com.pierfrancescosoffritti.androidyoutubeplayer:core:${Version.youtubePlayerVersion}"
 }

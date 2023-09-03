@@ -104,8 +104,8 @@ class RepositoryImpl @Inject constructor(
 
             override suspend fun saveCallResult(data: VideoResponse?) {
                 val videoTrailerList = data?.results?.filter { it.type == "Trailer" }
-                val videoItem = if (!videoTrailerList.isNullOrEmpty()) videoTrailerList[0]
-                else data?.results?.get(0)
+                val videoItem = if (!videoTrailerList.isNullOrEmpty()) videoTrailerList.first()
+                else data?.results?.first()
 
                 val videoEntity = videoItem?.toVideoEntity(movieId)
 

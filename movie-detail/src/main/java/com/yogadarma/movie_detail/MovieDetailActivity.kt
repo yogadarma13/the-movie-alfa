@@ -3,6 +3,8 @@ package com.yogadarma.movie_detail
 import android.text.TextUtils
 import android.view.View
 import androidx.activity.viewModels
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.yogadarma.common.BuildConfig
 import com.yogadarma.common.base.BaseActivity
 import com.yogadarma.common.extension.changeTimeFormat
@@ -20,6 +22,15 @@ class MovieDetailActivity :
     private val viewModel: MovieDetailViewModel by viewModels()
 
     private var review: Review? = null
+    private var videoKey: String? = null
+
+    private val youTubePlayerListener = object : AbstractYouTubePlayerListener() {
+        override fun onReady(youTubePlayer: YouTubePlayer) {
+            videoKey?.let {
+                youTubePlayer.loadVideo(it, 0F)
+            }
+        }
+    }
 
     override fun onView() {
         val movieId = intent.getStringExtra(BuildConfig.MOVIE_ID)
@@ -27,6 +38,7 @@ class MovieDetailActivity :
         movieId?.let {
             getMovieDetailData(it)
             getReviewsData(it)
+            getVideoData(it)
         }
 
         binding.btnAllReviews.setOnClickListener {
@@ -97,5 +109,31 @@ class MovieDetailActivity :
                 tvContent.ellipsize = TextUtils.TruncateAt.END
             }
         }
+    }
+
+    private fun getVideoData(movieId: String) {
+        viewModel.getVideoData(movieId).observe(this) { response ->
+            when (response) {
+                is Resource.Loading -> {}
+
+                is Resource.Success -> {
+                    videoKey = response.data?.key
+                    setVideoTrailer()
+                }
+
+                is Resource.Error -> {}
+            }
+        }
+    }
+
+    private fun setVideoTrailer() {
+        lifecycle.addObserver(binding.videoTrailer)
+        binding.videoTrailer.addYouTubePlayerListener(youTubePlayerListener)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycle.removeObserver(binding.videoTrailer)
+        binding.videoTrailer.removeYouTubePlayerListener(youTubePlayerListener)
     }
 }

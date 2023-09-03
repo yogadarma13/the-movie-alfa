@@ -52,6 +52,7 @@ dependencies {
     implementation(Dependencies.activityKtx)
     implementation(Dependencies.jodaTime)
     implementation(Dependencies.circleImageView)
+    implementation(Dependencies.youtubePlayer)
     testImplementation(Dependencies.junit)
     testImplementation(Dependencies.mockito)
     testImplementation(Dependencies.archCoreTesting)

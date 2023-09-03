@@ -4,4 +4,5 @@
     <string name="movie_detail_btn_back_content_description">Back Button</string>
     <string name="movie_detail_review_label">Reviews</string>
     <string name="movie_detail_all_review">Show all reviews</string>
+    <string name="movie_detail_trailer_label">Trailer</string>
 </resources>
