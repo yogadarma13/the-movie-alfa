@@ -2,11 +2,14 @@ package com.yogadarma.core.utils
 
 import com.yogadarma.core.data.source.local.room.entity.MovieEntity
 import com.yogadarma.core.data.source.local.room.entity.RemoteKeysEntity
+import com.yogadarma.core.data.source.local.room.entity.ReviewColumn
+import com.yogadarma.core.data.source.local.room.entity.ReviewEntity
+import com.yogadarma.core.data.source.local.room.entity.ReviewItemColumn
 import com.yogadarma.core.data.source.remote.model.AuthorDetails
 import com.yogadarma.core.data.source.remote.model.MovieDetailResponse
 import com.yogadarma.core.data.source.remote.model.MovieListItem
 import com.yogadarma.core.data.source.remote.model.MovieListResponse
-import com.yogadarma.core.data.source.remote.model.ReviewItem
+import com.yogadarma.core.data.source.remote.model.ReviewItemResponse
 import com.yogadarma.core.data.source.remote.model.ReviewResponse
 import com.yogadarma.core.domain.model.Movie
 
@@ -141,7 +144,7 @@ object DummyData {
         id = 615656,
         page = 1,
         results = listOf(
-            ReviewItem(
+            ReviewItemResponse(
                 author = "CinemaSerf",
                 authorDetails = AuthorDetails(
                     name = "CinemaSerf",
@@ -155,7 +158,7 @@ object DummyData {
                 updatedAt = "2023-08-12T06:21:56.728Z",
                 url = "https://www.themoviedb.org/review/64d72504d100b6011c8180f6"
             ),
-            ReviewItem(
+            ReviewItemResponse(
                 author = "MovieGuys",
                 authorDetails = AuthorDetails(
                     name = "",
@@ -169,6 +172,21 @@ object DummyData {
                 updatedAt = "2023-08-26T19:45:44.496Z",
                 url = "https://www.themoviedb.org/review/64ea55765258ae00add50b7d"
             ),
+        )
+    )
+
+    fun generateReviewEntity() = ReviewEntity(
+        id = "615656",
+        review = ReviewColumn(
+            reviewList = listOf(
+                ReviewItemColumn(
+                    "1234",
+                    "tes",
+                    "2023-12-23",
+                    "tes.jpg",
+                    "Content Review"
+                )
+            )
         )
     )
 }

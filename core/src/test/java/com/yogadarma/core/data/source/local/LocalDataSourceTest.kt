@@ -2,6 +2,9 @@ package com.yogadarma.core.data.source.local
 
 import com.yogadarma.core.data.source.local.room.dao.MovieDao
 import com.yogadarma.core.data.source.local.room.dao.RemoteKeysDao
+import com.yogadarma.core.data.source.local.room.dao.ReviewDao
+import com.yogadarma.core.data.source.local.room.entity.ReviewColumn
+import com.yogadarma.core.data.source.local.room.entity.ReviewEntity
 import com.yogadarma.core.utils.DummyData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -24,11 +27,14 @@ class LocalDataSourceTest {
     @Mock
     private lateinit var remoteKeysDao: RemoteKeysDao
 
+    @Mock
+    private lateinit var reviewDao: ReviewDao
+
     private lateinit var localDataSourceImpl: LocalDataSourceImpl
 
     @Before
     fun setup() {
-        localDataSourceImpl = LocalDataSourceImpl(movieDao, remoteKeysDao)
+        localDataSourceImpl = LocalDataSourceImpl(movieDao, remoteKeysDao, reviewDao)
     }
 
     @Test
@@ -106,5 +112,32 @@ class LocalDataSourceTest {
         localDataSourceImpl.deleteRemoteKeys()
 
         Mockito.verify(remoteKeysDao).deleteRemoteKeys()
+    }
+
+    @Test
+    fun `verify function insertReviews`() = runTest {
+        localDataSourceImpl.insertReviews(
+            ReviewEntity(
+                "1234",
+                ReviewColumn(reviewList = arrayListOf())
+            )
+        )
+
+        Mockito.verify(reviewDao)
+            .insertReviews(ReviewEntity("1234", ReviewColumn(reviewList = arrayListOf())))
+    }
+
+    @Test
+    fun `verify function getReviews and return ReviewEntity data`() = runTest {
+        val dummyData = DummyData.generateReviewEntity()
+        `when`(reviewDao.getReviews("615656")).thenReturn(dummyData)
+
+        val actualResult = localDataSourceImpl.getReviews("615656")
+
+        assertEquals(dummyData, actualResult)
+        assertEquals(dummyData.id, actualResult.id)
+        assertEquals(dummyData.review, actualResult.review)
+
+        Mockito.verify(reviewDao).getReviews("615656")
     }
 }
