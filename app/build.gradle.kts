@@ -55,6 +55,7 @@ dependencies {
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.testJunit)
     androidTestImplementation(Dependencies.espressoCore)
+    androidTestImplementation(Dependencies.espressoContrib)
 }
 
 kapt {

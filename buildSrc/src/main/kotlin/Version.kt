@@ -25,4 +25,5 @@ object Version {
     const val circleImageViewVersion = "3.1.0"
     const val youtubePlayerVersion = "12.1.0"
     const val idleResourceVersion = "3.3.0"
+    const val espressoContribVersion = "3.5.1"
 }
