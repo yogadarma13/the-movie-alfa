@@ -31,4 +31,6 @@ object Dependencies {
     const val jodaTime = "joda-time:joda-time:${Version.jodaVersion}"
     const val circleImageView = "de.hdodenhof:circleimageview:${Version.circleImageViewVersion}"
     const val youtubePlayer = "com.pierfrancescosoffritti.androidyoutubeplayer:core:${Version.youtubePlayerVersion}"
+    const val idlingResource = "androidx.test.espresso:espresso-idling-resource:${Version.idleResourceVersion}"
+    const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Version.espressoContribVersion}"
 }
