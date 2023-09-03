@@ -53,6 +53,7 @@ dependencies {
     implementation(Dependencies.jodaTime)
     implementation(Dependencies.circleImageView)
     implementation(Dependencies.youtubePlayer)
+    implementation(Dependencies.shimmer)
     testImplementation(Dependencies.junit)
     testImplementation(Dependencies.mockito)
     testImplementation(Dependencies.archCoreTesting)

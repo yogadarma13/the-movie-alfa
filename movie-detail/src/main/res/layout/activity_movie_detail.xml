@@ -16,123 +16,185 @@
             android:layout_height="wrap_content"
             android:paddingBottom="16dp">
 
-            <ImageView
-                android:id="@+id/imgDetailPoster"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:contentDescription="@string/movie_detail_poster_content_description"
-                android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="3:4"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@drawable/shadow_white"
-                app:layout_constraintBottom_toBottomOf="@id/imgDetailPoster"
-                app:layout_constraintDimensionRatio="1:1" />
-
-            <TextView
-                android:id="@+id/tvDetailTitle"
-                style="@style/TextView.24.Grey1.Bold"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                app:layout_constraintBottom_toBottomOf="@id/imgDetailPoster"
-                tools:text="Aquaman" />
-
-            <TextView
-                android:id="@+id/tvDetailGenres"
-                style="@style/TextView.14.Grey1.Regular"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                app:layout_constraintTop_toBottomOf="@id/imgDetailPoster"
-                tools:text="Action" />
-
-            <TextView
-                android:id="@+id/tvDetailVoteAverage"
-                style="@style/TextView.20.Grey1.Regular"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:drawablePadding="4dp"
-                app:drawableStartCompat="@drawable/ic_star"
-                app:layout_constraintTop_toBottomOf="@id/tvDetailGenres"
-                tools:text="7.5" />
-
-            <TextView
-                android:id="@+id/tvDetailReleaseDate"
-                style="@style/TextView.16.Grey1.Regular"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:drawablePadding="4dp"
-                app:drawableStartCompat="@drawable/ic_date"
-                app:layout_constraintTop_toBottomOf="@id/tvDetailVoteAverage"
-                app:layout_goneMarginStart="8dp"
-                tools:text="01/07/1999" />
-
-            <TextView
-                android:id="@+id/labelOverview"
-                style="@style/TextView.16.Grey1.Bold"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/movie_detail_overview_label"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailReleaseDate" />
-
-            <TextView
-                android:id="@+id/tvDetailOverview"
-                style="@style/TextView.14.Grey1.Regular"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/labelOverview"
-                tools:text="Lorem ipsum" />
-
-            <TextView
-                android:id="@+id/labelTrailer"
-                style="@style/TextView.16.Grey1.Bold"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/movie_detail_trailer_label"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailOverview" />
-
-            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                android:id="@+id/videoTrailer"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutMovieDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                app:autoPlay="false"
-                app:layout_constraintTop_toBottomOf="@+id/labelTrailer" />
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/labelReview"
-                style="@style/TextView.16.Grey1.Bold"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/movie_detail_review_label"
-                app:layout_constraintTop_toBottomOf="@+id/videoTrailer" />
+                <ImageView
+                    android:id="@+id/imgDetailPoster"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:contentDescription="@string/movie_detail_poster_content_description"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="3:4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/shadow_white"
+                    app:layout_constraintBottom_toBottomOf="@id/imgDetailPoster"
+                    app:layout_constraintDimensionRatio="1:1" />
+
+                <TextView
+                    android:id="@+id/tvDetailTitle"
+                    style="@style/TextView.24.Grey1.Bold"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    app:layout_constraintBottom_toBottomOf="@id/imgDetailPoster"
+                    tools:text="Aquaman" />
+
+                <TextView
+                    android:id="@+id/tvDetailGenres"
+                    style="@style/TextView.14.Grey1.Regular"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/imgDetailPoster"
+                    tools:text="Action" />
+
+                <TextView
+                    android:id="@+id/tvDetailVoteAverage"
+                    style="@style/TextView.20.Grey1.Regular"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:drawablePadding="4dp"
+                    app:drawableStartCompat="@drawable/ic_star"
+                    app:layout_constraintTop_toBottomOf="@id/tvDetailGenres"
+                    tools:text="7.5" />
+
+                <TextView
+                    android:id="@+id/tvDetailReleaseDate"
+                    style="@style/TextView.16.Grey1.Regular"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:drawablePadding="4dp"
+                    app:drawableStartCompat="@drawable/ic_date"
+                    app:layout_constraintTop_toBottomOf="@id/tvDetailVoteAverage"
+                    app:layout_goneMarginStart="8dp"
+                    tools:text="01/07/1999" />
+
+                <TextView
+                    android:id="@+id/labelOverview"
+                    style="@style/TextView.16.Grey1.Bold"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/movie_detail_overview_label"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDetailReleaseDate" />
+
+                <TextView
+                    android:id="@+id/tvDetailOverview"
+                    style="@style/TextView.14.Grey1.Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/labelOverview"
+                    tools:text="Lorem ipsum" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <include
-                android:id="@+id/itemReview"
-                layout="@layout/item_review"
+                android:id="@+id/shimmerMovieDetail"
+                layout="@layout/shimmer_movie_detail"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="layoutMovieDetail, shimmerMovieDetail" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutVideo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@+id/labelReview" />
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/barrier1">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAllReviews"
-                style="@style/TextButton.14.Grey1.Bold"
-                android:text="@string/movie_detail_all_review"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/itemReview" />
+                <TextView
+                    android:id="@+id/labelTrailer"
+                    style="@style/TextView.16.Grey1.Bold"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@string/movie_detail_trailer_label"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/videoTrailer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    app:autoPlay="false"
+                    app:layout_constraintTop_toBottomOf="@+id/labelTrailer" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/shimmerMovieVideo"
+                layout="@layout/shimmer_movie_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/barrier1" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="layoutVideo, shimmerMovieVideo" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/barrier2">
+
+                <TextView
+                    android:id="@+id/labelReview"
+                    style="@style/TextView.16.Grey1.Bold"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@string/movie_detail_review_label"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <include
+                    android:id="@+id/itemReview"
+                    layout="@layout/item_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/labelReview" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAllReviews"
+                    style="@style/TextButton.14.Grey1.Bold"
+                    android:text="@string/movie_detail_all_review"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/itemReview" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/shimmerMovieReview"
+                layout="@layout/shimmer_movie_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/barrier2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

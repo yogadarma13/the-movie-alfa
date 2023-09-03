@@ -10,6 +10,7 @@ import com.yogadarma.common.base.BaseActivity
 import com.yogadarma.common.extension.changeTimeFormat
 import com.yogadarma.common.extension.loadImage
 import com.yogadarma.core.data.source.Resource
+import com.yogadarma.core.domain.model.Movie
 import com.yogadarma.core.domain.model.Review
 import com.yogadarma.movie_detail.bottom_sheet.ReviewsBottomSheet
 import com.yogadarma.movie_detail.databinding.ActivityMovieDetailBinding
@@ -49,19 +50,22 @@ class MovieDetailActivity :
     private fun getMovieDetailData(movieId: String) {
         viewModel.getMovieDetail(movieId).observe(this) { response ->
             when (response) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    with(binding) {
+                        layoutMovieDetail.visibility = View.GONE
+                        shimmerMovieDetail.root.visibility = View.VISIBLE
+                        shimmerMovieDetail.root.startShimmer()
+                    }
+                }
 
                 is Resource.Success -> {
-                    with(binding) {
-                        imgDetailPoster.loadImage(BuildConfig.BASE_IMAGE_URL + response.data?.poster.orEmpty())
-                        tvDetailTitle.text = response.data?.title
-                        tvDetailGenres.text = response.data?.genres
-                        tvDetailVoteAverage.text = (response.data?.voteAverage ?: 0.0).toString()
-                        tvDetailOverview.text = response.data?.overview
-                        tvDetailReleaseDate.text = response.data?.releaseDate?.changeTimeFormat(
-                            BuildConfig.DATE_FORMAT_1,
-                            BuildConfig.DATE_FORMAT_2
-                        )
+                    response.data?.let {
+                        with(binding) {
+                            layoutMovieDetail.visibility = View.VISIBLE
+                            shimmerMovieDetail.root.visibility = View.GONE
+                            shimmerMovieDetail.root.stopShimmer()
+                        }
+                        setMovieDetailData(it)
                     }
                 }
 
@@ -70,14 +74,43 @@ class MovieDetailActivity :
         }
     }
 
+    private fun setMovieDetailData(data: Movie) {
+        with(binding) {
+            imgDetailPoster.loadImage(BuildConfig.BASE_IMAGE_URL + data.poster.orEmpty())
+            tvDetailTitle.text = data.title
+            tvDetailGenres.text = data.genres
+            tvDetailVoteAverage.text = (data.voteAverage ?: 0.0).toString()
+            tvDetailOverview.text = data.overview
+            tvDetailReleaseDate.text = data.releaseDate?.changeTimeFormat(
+                BuildConfig.DATE_FORMAT_1,
+                BuildConfig.DATE_FORMAT_2
+            )
+        }
+    }
+
     private fun getReviewsData(movieId: String) {
         viewModel.getReviewsData(movieId).observe(this) { response ->
             when (response) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    with(binding) {
+                        layoutReview.visibility = View.GONE
+                        shimmerMovieReview.root.visibility = View.VISIBLE
+                        shimmerMovieReview.root.startShimmer()
+                    }
+                }
 
                 is Resource.Success -> {
                     review = response.data
-                    setReviewData(review)
+
+                    review?.let {
+                        with(binding) {
+                            layoutReview.visibility = View.VISIBLE
+                            shimmerMovieReview.root.visibility = View.GONE
+                            shimmerMovieReview.root.stopShimmer()
+                        }
+
+                        setReviewData(it)
+                    }
                 }
 
                 is Resource.Error -> {}
@@ -85,13 +118,15 @@ class MovieDetailActivity :
         }
     }
 
-    private fun setReviewData(review: Review?) {
-        if (review?.list.isNullOrEmpty()) {
+    private fun setReviewData(review: Review) {
+        if (review.list.isNullOrEmpty()) {
             binding.labelReview.visibility = View.GONE
             binding.itemReview.root.visibility = View.GONE
+            binding.btnAllReviews.visibility = View.GONE
         } else {
-            val firstData = review?.list?.get(0)
+            val firstData = review.list?.get(0)
             binding.labelReview.visibility = View.VISIBLE
+            binding.btnAllReviews.visibility = View.VISIBLE
             with(binding.itemReview) {
                 root.visibility = View.VISIBLE
 
@@ -114,11 +149,25 @@ class MovieDetailActivity :
     private fun getVideoData(movieId: String) {
         viewModel.getVideoData(movieId).observe(this) { response ->
             when (response) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    with(binding) {
+                        layoutVideo.visibility = View.GONE
+                        shimmerMovieVideo.root.visibility = View.VISIBLE
+                        shimmerMovieVideo.root.startShimmer()
+                    }
+                }
 
                 is Resource.Success -> {
                     videoKey = response.data?.key
-                    setVideoTrailer()
+
+                    videoKey?.let {
+                        with(binding) {
+                            layoutVideo.visibility = View.VISIBLE
+                            shimmerMovieVideo.root.visibility = View.GONE
+                            shimmerMovieVideo.root.stopShimmer()
+                        }
+                        setVideoTrailer()
+                    }
                 }
 
                 is Resource.Error -> {}
