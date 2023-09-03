@@ -12,5 +12,5 @@ interface ReviewDao {
     suspend fun insertReviews(review: ReviewEntity)
 
     @Query("SELECT * FROM review WHERE id=:id")
-    suspend fun getReviews(id: String): ReviewEntity
+    suspend fun getReviews(id: String): ReviewEntity?
 }

@@ -13,5 +13,5 @@ interface VideoDao {
     suspend fun insertVideo(videoEntity: VideoEntity)
 
     @Query("SELECT * FROM video WHERE id=:id")
-    suspend fun getVideo(id: String): VideoEntity
+    suspend fun getVideo(id: String): VideoEntity?
 }

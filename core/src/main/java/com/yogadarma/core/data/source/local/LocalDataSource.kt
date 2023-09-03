@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import com.yogadarma.core.data.source.local.room.entity.MovieEntity
 import com.yogadarma.core.data.source.local.room.entity.RemoteKeysEntity
 import com.yogadarma.core.data.source.local.room.entity.ReviewEntity
+import com.yogadarma.core.data.source.local.room.entity.VideoEntity
 
 interface LocalDataSource {
 
@@ -26,4 +27,8 @@ interface LocalDataSource {
     suspend fun insertReviews(review: ReviewEntity)
 
     suspend fun getReviews(id: String): ReviewEntity?
+
+    suspend fun insertVideo(videoEntity: VideoEntity)
+
+    suspend fun getVideo(id: String): VideoEntity?
 }
