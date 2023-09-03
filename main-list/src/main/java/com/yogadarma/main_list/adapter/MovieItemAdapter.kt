@@ -14,6 +14,8 @@ import javax.inject.Inject
 class MovieItemAdapter @Inject constructor() :
     PagingDataAdapter<Movie, MovieItemAdapter.ViewHolder>(DIFF_CALLBACK) {
 
+    private var callback: ((String) -> Unit)? = null
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bind(it)
@@ -33,8 +35,16 @@ class MovieItemAdapter @Inject constructor() :
                 tvTitle.text = data.title
                 tvVoteAverage.text = data.voteAverage.toString()
                 tvOverview.text = data.overview
+
+                root.setOnClickListener {
+                    callback?.invoke(data.id.orEmpty())
+                }
             }
         }
+    }
+
+    fun setOnItemClickListener(callback: (String) -> Unit) {
+        this.callback = callback
     }
 
     companion object {

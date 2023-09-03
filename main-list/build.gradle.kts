@@ -45,7 +45,6 @@ dependencies {
     implementation(Dependencies.appcompat)
     implementation(Dependencies.material)
     implementation(Dependencies.daggerHilt)
-    implementation(Dependencies.daggerHilt)
     kapt(Dependencies.daggerHiltCompiler)
     implementation(Dependencies.lifecycleLiveData)
     implementation(Dependencies.paging)
