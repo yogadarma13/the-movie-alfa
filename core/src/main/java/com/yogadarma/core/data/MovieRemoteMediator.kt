@@ -11,6 +11,7 @@ import com.yogadarma.core.data.source.local.room.entity.MovieEntity
 import com.yogadarma.core.data.source.local.room.entity.RemoteKeysEntity
 import com.yogadarma.core.data.source.remote.ApiResponse
 import com.yogadarma.core.data.source.remote.RemoteDataSource
+import com.yogadarma.core.utils.toMovieEntity
 import kotlinx.coroutines.flow.first
 
 @OptIn(ExperimentalPagingApi::class)
@@ -73,13 +74,7 @@ class MovieRemoteMediator(
                         localDataSource.insertAllKeys(keys)
 
                         val movieList = responseList.map {
-                            MovieEntity(
-                                (it.id ?: "").toString(),
-                                it.posterPath.orEmpty(),
-                                it.title.orEmpty(),
-                                it.overview.orEmpty(),
-                                it.voteAverage ?: 0.0
-                            )
+                            it.toMovieEntity()
                         }
                         localDataSource.insertMovies(movieList)
                     }

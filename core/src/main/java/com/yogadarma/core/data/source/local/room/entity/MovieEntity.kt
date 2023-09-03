@@ -11,14 +11,20 @@ data class MovieEntity(
     val id: String,
 
     @ColumnInfo(name = "poster")
-    val poster: String,
+    val poster: String? = null,
 
     @ColumnInfo(name = "title")
-    val title: String,
+    val title: String? = null,
 
     @ColumnInfo(name = "overview")
-    val overview: String,
+    val overview: String? = null,
 
     @ColumnInfo(name = "voteAverage")
-    val voteAverage: Double
+    val voteAverage: Double? = null,
+
+    @ColumnInfo(name = "releaseDate")
+    val releaseDate: String? = null,
+
+    @ColumnInfo(name = "genres")
+    val genres: String? = null
 )
