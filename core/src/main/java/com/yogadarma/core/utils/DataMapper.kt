@@ -4,12 +4,15 @@ import com.yogadarma.core.data.source.local.room.entity.MovieEntity
 import com.yogadarma.core.data.source.local.room.entity.ReviewColumn
 import com.yogadarma.core.data.source.local.room.entity.ReviewEntity
 import com.yogadarma.core.data.source.local.room.entity.ReviewItemColumn
+import com.yogadarma.core.data.source.local.room.entity.VideoEntity
 import com.yogadarma.core.data.source.remote.model.MovieDetailResponse
 import com.yogadarma.core.data.source.remote.model.MovieListItem
 import com.yogadarma.core.data.source.remote.model.ReviewResponse
+import com.yogadarma.core.data.source.remote.model.VideoItemResponse
 import com.yogadarma.core.domain.model.Movie
 import com.yogadarma.core.domain.model.Review
 import com.yogadarma.core.domain.model.ReviewItem
+import com.yogadarma.core.domain.model.Video
 
 
 fun MovieListItem.toMovieEntity() = MovieEntity(
@@ -65,4 +68,11 @@ fun ReviewResponse.toReviewEntity(movieId: String) = ReviewEntity(
             )
         }
     )
+)
+
+fun VideoEntity.toVideo() = Video(id, key)
+
+fun VideoItemResponse.toVideoEntity(movieId: String) = VideoEntity(
+    id = movieId,
+    key = key
 )
