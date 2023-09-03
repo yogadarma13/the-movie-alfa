@@ -9,6 +9,7 @@ import com.yogadarma.common.extension.changeTimeFormat
 import com.yogadarma.common.extension.loadImage
 import com.yogadarma.core.data.source.Resource
 import com.yogadarma.core.domain.model.Review
+import com.yogadarma.movie_detail.bottom_sheet.ReviewsBottomSheet
 import com.yogadarma.movie_detail.databinding.ActivityMovieDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,13 +28,16 @@ class MovieDetailActivity :
             getMovieDetailData(it)
             getReviewsData(it)
         }
+
+        binding.btnAllReviews.setOnClickListener {
+            ReviewsBottomSheet.newInstance(review).show(supportFragmentManager)
+        }
     }
 
     private fun getMovieDetailData(movieId: String) {
         viewModel.getMovieDetail(movieId).observe(this) { response ->
             when (response) {
-                is Resource.Loading -> {
-                }
+                is Resource.Loading -> {}
 
                 is Resource.Success -> {
                     with(binding) {
@@ -49,8 +53,7 @@ class MovieDetailActivity :
                     }
                 }
 
-                is Resource.Error -> {
-                }
+                is Resource.Error -> {}
             }
         }
     }
@@ -65,8 +68,7 @@ class MovieDetailActivity :
                     setReviewData(review)
                 }
 
-                is Resource.Error -> {
-                }
+                is Resource.Error -> {}
             }
         }
     }

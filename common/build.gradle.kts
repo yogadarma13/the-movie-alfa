@@ -19,6 +19,7 @@ android {
         buildConfigField("String", "DATE_FORMAT_3", "\"yyyy-MM-dd'T'HH:mm:ss.SSSZ\"")
         buildConfigField("String", "DATE_FORMAT_4", "\"dd MMMM yyyy HH:mm\"")
         buildConfigField("String", "MOVIE_ID", "\"MOVIE_ID\"")
+        buildConfigField("String", "REVIEW_DATA", "\"REVIEW_DATA\"")
     }
 
     buildTypes {
