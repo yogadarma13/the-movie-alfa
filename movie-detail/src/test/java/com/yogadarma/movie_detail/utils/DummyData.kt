@@ -1,6 +1,8 @@
 package com.yogadarma.movie_detail.utils
 
 import com.yogadarma.core.domain.model.Movie
+import com.yogadarma.core.domain.model.Review
+import com.yogadarma.core.domain.model.ReviewItem
 
 object DummyData {
     fun generateMovieData() = Movie(
@@ -11,5 +13,17 @@ object DummyData {
         title = "Meg 2= The Trench",
         voteAverage = 7.0,
         genres = "Action, Drama"
+    )
+
+    fun generateReviewsData() = Review(
+        list = listOf(
+            ReviewItem(
+                "1234",
+                "tes",
+                "2023-12-23",
+                "tes.jpg",
+                "Content Review"
+            )
+        )
     )
 }

@@ -3,6 +3,7 @@ package com.yogadarma.movie_detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.yogadarma.core.data.source.Resource
 import com.yogadarma.core.domain.usecase.GetMovieDetailUseCase
+import com.yogadarma.core.domain.usecase.GetReviewsUseCase
 import com.yogadarma.movie_detail.utils.DummyData
 import com.yogadarma.movie_detail.utils.MainDispatcherRule
 import com.yogadarma.movie_detail.utils.getOrAwaitValue
@@ -32,11 +33,14 @@ class MovieDetailViewModelTest {
     @Mock
     private lateinit var getMovieDetailUseCase: GetMovieDetailUseCase
 
+    @Mock
+    private lateinit var getReviewsUseCase: GetReviewsUseCase
+
     private lateinit var viewModel: MovieDetailViewModel
 
     @Before
     fun setup() {
-        viewModel = MovieDetailViewModel(getMovieDetailUseCase)
+        viewModel = MovieDetailViewModel(getMovieDetailUseCase, getReviewsUseCase)
     }
 
     @Test
@@ -60,4 +64,22 @@ class MovieDetailViewModelTest {
         verify(getMovieDetailUseCase).invoke("1234")
     }
 
+    @Test
+    fun `when getReviewsData ViewModel Should Not Null and Return Data`() = runTest {
+        val dummyData = DummyData.generateReviewsData()
+        val dummyDataFlow = flow { emit(Resource.Success(dummyData)) }
+
+        `when`(getReviewsUseCase("1234")).thenReturn(dummyDataFlow)
+
+        val actualResult = viewModel.getReviewsData("1234").getOrAwaitValue()
+
+        assertTrue(actualResult is Resource.Success)
+        assertEquals(dummyData.list?.get(0)?.reviewId, actualResult.data?.list?.get(0)?.reviewId)
+        assertEquals(dummyData.list?.get(0)?.avatar, actualResult.data?.list?.get(0)?.avatar)
+        assertEquals(dummyData.list?.get(0)?.date, actualResult.data?.list?.get(0)?.date)
+        assertEquals(dummyData.list?.get(0)?.username, actualResult.data?.list?.get(0)?.username)
+        assertEquals(dummyData.list?.get(0)?.content, actualResult.data?.list?.get(0)?.content)
+
+        verify(getReviewsUseCase).invoke("1234")
+    }
 }
