@@ -1,1 +1,5 @@
-<resources></resources>
+<resources>
+    <string name="movie_detail_poster_content_description">Movie Detail Poster</string>
+    <string name="movie_detail_overview_label">Overview</string>
+    <string name="movie_detail_btn_back_content_description">Back Button</string>
+</resources>
