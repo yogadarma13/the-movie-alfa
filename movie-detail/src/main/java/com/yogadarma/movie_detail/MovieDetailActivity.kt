@@ -9,6 +9,7 @@ import com.yogadarma.common.BuildConfig
 import com.yogadarma.common.base.BaseActivity
 import com.yogadarma.common.extension.changeTimeFormat
 import com.yogadarma.common.extension.loadImage
+import com.yogadarma.common.extension.showToast
 import com.yogadarma.core.data.source.Resource
 import com.yogadarma.core.domain.model.Movie
 import com.yogadarma.core.domain.model.Review
@@ -69,7 +70,9 @@ class MovieDetailActivity :
                     }
                 }
 
-                is Resource.Error -> {}
+                is Resource.Error -> {
+                    showToast(response.error?.message.toString())
+                }
             }
         }
     }
@@ -113,7 +116,9 @@ class MovieDetailActivity :
                     }
                 }
 
-                is Resource.Error -> {}
+                is Resource.Error -> {
+                    showToast(response.error?.message.toString())
+                }
             }
         }
     }
@@ -170,7 +175,9 @@ class MovieDetailActivity :
                     }
                 }
 
-                is Resource.Error -> {}
+                is Resource.Error -> {
+                    showToast(response.error?.message.toString())
+                }
             }
         }
     }
