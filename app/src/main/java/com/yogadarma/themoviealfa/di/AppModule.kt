@@ -6,6 +6,8 @@ import com.yogadarma.core.domain.usecase.GetMoviesImpl
 import com.yogadarma.core.domain.usecase.GetMoviesUseCase
 import com.yogadarma.core.domain.usecase.GetReviewsImpl
 import com.yogadarma.core.domain.usecase.GetReviewsUseCase
+import com.yogadarma.core.domain.usecase.GetVideoImpl
+import com.yogadarma.core.domain.usecase.GetVideoUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -26,4 +28,8 @@ abstract class AppModule {
     @Binds
     @ViewModelScoped
     abstract fun bindsGetReviewsUseCase(getReviewsImpl: GetReviewsImpl): GetReviewsUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindsGetVideoUseCase(getVideoImpl: GetVideoImpl): GetVideoUseCase
 }
