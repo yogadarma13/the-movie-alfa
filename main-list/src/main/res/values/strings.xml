@@ -1,5 +1,5 @@
 <resources>
-    <string name="main_list_page_title">The Move Alfa</string>
+    <string name="main_list_page_title">The Movie Alfa</string>
     <string name="retry_button_content_description">Retry Button</string>
     <string name="retry_button_text">Retry</string>
     <string name="error_message">Unable to get data. Make sure your internet connection.</string>
