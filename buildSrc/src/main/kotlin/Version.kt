@@ -24,4 +24,5 @@ object Version {
     const val jodaVersion = "2.12.5"
     const val circleImageViewVersion = "3.1.0"
     const val youtubePlayerVersion = "12.1.0"
+    const val idleResourceVersion = "3.3.0"
 }

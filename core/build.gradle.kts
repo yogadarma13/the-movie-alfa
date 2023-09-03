@@ -56,6 +56,7 @@ dependencies {
     implementation(Dependencies.paging)
     implementation(Dependencies.roomPaging)
     implementation(Dependencies.lifecycleLiveData)
+    implementation(Dependencies.idlingResource)
     testImplementation(Dependencies.junit)
     testImplementation(Dependencies.turbine)
     testImplementation(Dependencies.mockito)
