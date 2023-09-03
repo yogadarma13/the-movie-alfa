@@ -21,4 +21,5 @@ object Version {
     const val testCoreKtx = "1.5.0"
     const val glideVersion = "4.16.0"
     const val shimmerVersion = "0.5.0"
+    const val jodaVersion = "2.12.5"
 }

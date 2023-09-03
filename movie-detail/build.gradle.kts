@@ -50,6 +50,7 @@ dependencies {
     implementation(Dependencies.coroutinesCore)
     implementation(Dependencies.coroutinesAndroid)
     implementation(Dependencies.activityKtx)
+    implementation(Dependencies.jodaTime)
     testImplementation(Dependencies.junit)
     testImplementation(Dependencies.mockito)
     testImplementation(Dependencies.archCoreTesting)
