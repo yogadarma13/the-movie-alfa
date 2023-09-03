@@ -54,6 +54,25 @@ class LocalDataSourceTest {
     }
 
     @Test
+    fun `verify function getMovieDetail and return MovieEntity data`() = runTest {
+        val dummyData = DummyData.generateMovieEntity()
+        `when`(movieDao.getMovieDetail("615656")).thenReturn(dummyData)
+
+        val actualResult = localDataSourceImpl.getMovieDetail("615656")
+
+        assertEquals(dummyData, actualResult)
+        assertEquals(dummyData.id, actualResult.id)
+        assertEquals(dummyData.title, actualResult.title)
+        assertEquals(dummyData.poster, actualResult.poster)
+        assertEquals(dummyData.overview, actualResult.overview)
+        assertEquals(dummyData.releaseDate, actualResult.releaseDate)
+        assertEquals(dummyData.voteAverage, actualResult.voteAverage)
+        assertEquals(dummyData.genres, actualResult.genres)
+
+        Mockito.verify(movieDao).getMovieDetail("615656")
+    }
+
+    @Test
     fun `verify function deleteAllMovies`() = runTest {
         localDataSourceImpl.deleteAllMovies()
 
