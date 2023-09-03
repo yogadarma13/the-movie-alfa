@@ -46,6 +46,10 @@ class MovieDetailActivity :
         binding.btnAllReviews.setOnClickListener {
             ReviewsBottomSheet.newInstance(review).show(supportFragmentManager)
         }
+
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun getMovieDetailData(movieId: String) {
