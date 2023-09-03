@@ -12,6 +12,8 @@ import com.yogadarma.core.data.source.remote.model.MovieListResponse
 import com.yogadarma.core.data.source.remote.model.ReviewItemResponse
 import com.yogadarma.core.data.source.remote.model.ReviewResponse
 import com.yogadarma.core.domain.model.Movie
+import com.yogadarma.core.domain.model.Review
+import com.yogadarma.core.domain.model.ReviewItem
 
 object DummyData {
     fun generateMoviesListResponse() = MovieListResponse(
@@ -186,6 +188,18 @@ object DummyData {
                     "tes.jpg",
                     "Content Review"
                 )
+            )
+        )
+    )
+
+    fun generateReviewsData() = Review(
+        list = listOf(
+            ReviewItem(
+                "1234",
+                "tes",
+                "2023-12-23",
+                "tes.jpg",
+                "Content Review"
             )
         )
     )
