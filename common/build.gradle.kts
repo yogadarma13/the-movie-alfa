@@ -16,6 +16,8 @@ android {
         buildConfigField("String", "BASE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\"")
         buildConfigField("String", "DATE_FORMAT_1", "\"yyyy-MM-dd\"")
         buildConfigField("String", "DATE_FORMAT_2", "\"dd MMMM yyyy\"")
+        buildConfigField("String", "DATE_FORMAT_3", "\"yyyy-MM-dd'T'HH:mm:ss.SSSZ\"")
+        buildConfigField("String", "DATE_FORMAT_4", "\"dd MMMM yyyy HH:mm\"")
         buildConfigField("String", "MOVIE_ID", "\"MOVIE_ID\"")
     }
 

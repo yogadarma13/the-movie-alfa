@@ -3,4 +3,5 @@
     <string name="movie_detail_poster_content_description">Poster Detail Film</string>
     <string name="movie_detail_overview_label">Ringkasan</string>
     <string name="movie_detail_btn_back_content_description">Tombol Kembali</string>
+    <string name="movie_detail_review_label">Ulasan</string>
 </resources>

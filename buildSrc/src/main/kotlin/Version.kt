@@ -22,4 +22,5 @@ object Version {
     const val glideVersion = "4.16.0"
     const val shimmerVersion = "0.5.0"
     const val jodaVersion = "2.12.5"
+    const val circleImageViewVersion = "3.1.0"
 }
