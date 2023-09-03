@@ -16,7 +16,12 @@ class LocalDataSourceImpl @Inject constructor(
 
     override suspend fun insertMovies(movies: List<MovieEntity>) = movieDao.insertMovies(movies)
 
+    override suspend fun insertMovieDetail(id: String, releaseDate: String?, genres: String?) =
+        movieDao.insertMovieDetail(id, releaseDate, genres)
+
     override fun getMoviesData(): PagingSource<Int, MovieEntity> = movieDao.getMovies()
+
+    override suspend fun getMovieDetail(id: String): MovieEntity = movieDao.getMovieDetail(id)
 
     override suspend fun deleteAllMovies() = movieDao.deleteAll()
 

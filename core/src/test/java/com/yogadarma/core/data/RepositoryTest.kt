@@ -62,7 +62,7 @@ class RepositoryTest {
     }
 
     @Test
-    fun `when getMoviesData RemoteDataSource Should Return Error`() = runTest {
+    fun `when getMovieDetail Repository Should Return Error`() = runTest {
 
         val dummyDataError = flow<ApiResponse<MovieDetailResponse>> {
             emit(ApiResponse.Error(error = Throwable(message = "error")))

@@ -8,7 +8,11 @@ interface LocalDataSource {
 
     suspend fun insertMovies(movies: List<MovieEntity>)
 
+    suspend fun insertMovieDetail(id: String, releaseDate: String?, genres: String?)
+
     fun getMoviesData(): PagingSource<Int, MovieEntity>
+
+    suspend fun getMovieDetail(id: String): MovieEntity
 
     suspend fun deleteAllMovies()
 

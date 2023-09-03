@@ -8,7 +8,7 @@ import androidx.paging.PagingState
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListUpdateCallback
 import app.cash.turbine.test
-import com.yogadarma.core.domain.model.MovieItem
+import com.yogadarma.core.domain.model.Movie
 import com.yogadarma.core.domain.repository.Repository
 import com.yogadarma.core.utils.DummyData
 import com.yogadarma.core.utils.MainDispatcherRule
@@ -35,7 +35,7 @@ class GetMoviesUseCaseTest {
     @Mock
     private lateinit var repository: Repository
 
-    lateinit var getMoviesImpl: GetMoviesImpl
+    private lateinit var getMoviesImpl: GetMoviesImpl
 
     @Before
     fun setup() {
@@ -69,18 +69,18 @@ class GetMoviesUseCaseTest {
     }
 }
 
-class MoviePagingSource : PagingSource<Int, LiveData<List<MovieItem>>>() {
+class MoviePagingSource : PagingSource<Int, LiveData<List<Movie>>>() {
     companion object {
-        fun snapshot(items: List<MovieItem>): PagingData<MovieItem> {
+        fun snapshot(items: List<Movie>): PagingData<Movie> {
             return PagingData.from(items)
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, LiveData<List<MovieItem>>>): Int {
+    override fun getRefreshKey(state: PagingState<Int, LiveData<List<Movie>>>): Int {
         return 0
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, LiveData<List<MovieItem>>> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, LiveData<List<Movie>>> {
         return LoadResult.Page(emptyList(), 0, 1)
     }
 }
@@ -92,12 +92,12 @@ val noopListUpdateCallback = object : ListUpdateCallback {
     override fun onChanged(position: Int, count: Int, payload: Any?) {}
 }
 
-val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MovieItem>() {
-    override fun areItemsTheSame(oldItem: MovieItem, newItem: MovieItem): Boolean {
+val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movie>() {
+    override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: MovieItem, newItem: MovieItem): Boolean {
+    override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
         return oldItem.id == newItem.id
     }
 }
